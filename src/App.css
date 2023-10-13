@@ -2,7 +2,11 @@ body, html {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background-color: #f0f0f0 !important; 
+  background-color: #f0f0f0 !important;
+  background-image: url('4407079.png'); /* Add the path to your image */
+  background-size: 75%;
+  background-repeat: no-repeat;
+  background-position: center; 
 }
 
 
@@ -10,22 +14,22 @@ body, html {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #fff; 
+  background-color: #fff !important; 
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
 }
 
 
 .header {
-  background-color: #007bff !important; 
+  background-color: #0084ff !important; 
   padding: 20px;
   text-align: center;
-  color: #fff; 
+  color: #fff !important; 
 }
 
 
 .create-button {
   background-color: #28a745 !important; 
-  color: #fff; 
+  color: #fff !important; 
   border: none;
   padding: 10px 20px;
   margin-bottom: 20px;
@@ -39,8 +43,8 @@ body, html {
 
 
 .reminder-card {
-  background-color: #fff;
-  border: 1px solid #ddd; 
+  background-color: #fff !important;
+  border: 1px solid #ddd !important; 
   padding: 20px;
   margin-bottom: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
@@ -61,7 +65,7 @@ body, html {
 
 .action-button {
   background-color: #007bff !important;
-  color: #fff;
+  color: #fff !important;
   border: none;
   padding: 5px 10px;
   margin-right: 5px;
