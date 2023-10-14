@@ -4,9 +4,9 @@ body, html {
   font-family: Arial, sans-serif;
   background-color: #f0f0f0 !important;
   background-image: url('4407079.png'); /* Add the path to your image */
-  background-size: 75%;
+  background-size: 100%;
   background-repeat: no-repeat;
-  background-position: center; 
+  background-position: fixed; 
 }
 
 
