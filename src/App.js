@@ -1,8 +1,8 @@
 
 import "./App.css";
-import ReminderCard from './ReminderCard';
 import React, { useState } from 'react';
 import { AppBar, Button, Container, TextField, Toolbar, Typography, Paper } from '@mui/material';
+
 
 function App() {
   const [reminders, setReminders] = useState([
@@ -30,23 +30,27 @@ function App() {
     setTitle(reminder.title);
     setContent(reminder.content);
     setEditingReminder(reminder);
+    const updatedReminders = reminders.filter((r) => r !== reminder);
+    setReminders(updatedReminders);
   };
-
+  
   const handleSaveReminder = () => {
     if (!title || !content) return;
-
+  
+    const newReminder = { title, content };
+  
     if (editingReminder) {
-      const updatedReminders = reminders.map((reminder) => reminder === editingReminder ? {...reminder, title, content} : reminder);
-      setReminders(updatedReminders);
+      setReminders([...reminders, newReminder]);
     } else {
-      setReminders([...reminders, { title, content }]);
+      setReminders([...reminders, newReminder]);
     }
-
+  
     setShowForm(false);
     setTitle('');
     setContent('');
     setEditingReminder(null);
   };
+  
 
   const handleDeleteReminder = (reminder) => {
     const updatedReminders = reminders.filter((r) => r !== reminder);
@@ -56,18 +60,26 @@ function App() {
   return (
     <div className="App">
       <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6">Reminders App</Typography>
+      <Toolbar style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Typography variant="h6">
+          Reminders App
+        </Typography>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 1 }}>
+          <img 
+            src="./bell.png"
+            style={{ height: '40px', width: 'auto' }}
+          />
+        </div>
+          <Button
+            className="create-button"
+            variant="contained"
+            onClick={handleCreateReminder}
+          >
+            Create Reminder
+          </Button>
         </Toolbar>
       </AppBar>
       <Container>
-        <Button
-          className="create-button"
-          variant="contained"
-          onClick={handleCreateReminder}
-        >
-          Create Reminder
-        </Button>
         {showForm && (
           <Paper className="reminder-card">
             <TextField
@@ -91,6 +103,7 @@ function App() {
               className="action-button"
               variant="contained"
               onClick={handleSaveReminder}
+              style={{ marginRight: '10px', marginTop: '10px' }}
             >
               Save
             </Button>
@@ -98,38 +111,39 @@ function App() {
               className="cancel-button"
               variant="contained"
               onClick={() => setShowForm(false)}
+              style={{marginTop: '10px' }}
             >
               Cancel
             </Button>
           </Paper>
         )}
-        <div>
-          {reminders.map((reminder, index) => (
-            <div className="reminder-card" key={index}>
-              <div className="reminder-title">{reminder.title}</div>
-              <div className="reminder-content">{reminder.content}</div>
-              <div>
-                <Button
-                  className="action-button"
-                  variant="contained"
-                  onClick={() => handleEditReminder(reminder)}
-                >
-                  Edit
-                </Button>
-                <Button
-                  className="action-button cancel-button"
-                  variant="contained"
-                  onClick={() => handleDeleteReminder(reminder)}
-                >
-                  Delete
-                </Button>
-              </div>
+        {reminders.map((reminder, index) => (
+          <div className="reminder-card" key={index}>
+            <div className="reminder-title">{reminder.title}</div>
+            <div className="reminder-content">{reminder.content}</div>
+            <div style={{ marginTop: '10px' }}>
+              <Button
+                className="action-button"
+                variant="contained"
+                onClick={() => handleEditReminder(reminder)}
+                style={{ marginRight: '10px' }}
+              >
+                Edit
+              </Button>
+              <Button
+                className="action-button cancel-button"
+                variant="contained"
+                onClick={() => handleDeleteReminder(reminder)}
+              >
+                Delete
+              </Button>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </Container>
     </div>
   );
+  
 }
 
 export default App;
